@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MineMissions</title>
+<style>
+body {
+    background: radial-gradient(circle at top, #0f1a0f, #070b07);
+    color: #a4ff9a;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: 6px solid #4CAF50; /* Green perimeter border */
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #4CAF50;
+    text-shadow: 0 0 10px #4CAF50;
+}
+
+h3 {
+    color: #c8ffc3;
+}
+
+.box {
+    margin: 15px auto;
+    padding: 18px;
+    width: 320px;
+    border: 2px solid #4CAF50;
+    cursor: pointer;
+    background: linear-gradient(145deg, #0f140f, #121812);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.box:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #4CAF50;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-top: 25px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #66ff66;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #66ff66;
+}
+
+#mission {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    min-height: 30px;
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 20px; /* Bigger text */
+    color: #baffb0;
+    text-shadow: 0 0 6px #4CAF50;
+}
+
+/* Decorative divider */
+.divider {
+    width: 60%;
+    height: 2px;
+    background: #4CAF50;
+    margin: 20px auto;
+    box-shadow: 0 0 8px #4CAF50;
+}
+
+</style>
+</head>
+<body>
+
+<h1>MineMissions</h1>
+<h3>Click a category</h3>
+
+<div class="divider"></div>
+
+<div class="box" onclick="selectCategory('Beginner Fun')">🌱 Beginner Fun</div>
+<div class="box" onclick="selectCategory('Building Challenges')">🏡 Building Challenges</div>
+<div class="box" onclick="selectCategory('Adventure & Combat')">⚔️ Adventure & Combat</div>
+<div class="box" onclick="selectCategory('Exploration')">🌍 Exploration</div>
+<div class="box" onclick="selectCategory('Resource Challenges')">💎 Resource Challenges</div>
+<div class="box" onclick="selectCategory('Redstone & Logic')">🧠 Redstone & Logic</div>
+<div class="box" onclick="selectCategory('Fun & Weird')">🐾 Fun & Weird</div>
+<div class="box" onclick="selectCategory('Hardcore Challenges')">🔥 Hardcore Challenges</div>
+<div class="box" onclick="selectCategory('Goals & Achievements')">🎯 Goals & Achievements</div>
+<div class="box" onclick="selectCategory('Pro Level Missions')">🚀 Pro Level Missions</div>
+
+<div class="divider"></div>
+
+<button onclick="getMission()">Get missions!</button>
+
+<div id="mission"></div>
+
+<footer>
+<p><strong>Getting bored? Specify your difficulty and click the button!</strong></p>
+</footer>
+
+<script>
+let selectedCategory = '';
+
+const missions = {
+    "Beginner Fun": ["Build a starter house using only wood","Survive your first night without sleeping","Tame a wolf","Grow a wheat farm","Cook 20 pieces of food","Make a full set of stone tools","Find a village","Trade with a villager","Build a fenced animal farm","Craft a shield and use it"],
+    "Building Challenges": ["Build a treehouse","Make a house underwater","Create a mountain base","Build a castle","Design a modern house","Make a secret underground bunker","Build a bridge across a river","Create a watchtower","Build a floating island","Make a lava-themed base"],
+    "Adventure & Combat": ["Defeat 20 zombies","Raid a pillager outpost","Survive a night in the Nether","Kill a skeleton using only a sword","Defeat a spider in a cave","Clear a dungeon spawner","Fight a raid in a village","Defeat the Ender Dragon","Kill a creeper before it explodes","Survive with half a heart"],
+    "Exploration": ["Find a desert temple","Discover a jungle","Explore a mineshaft","Find a stronghold","Locate an ocean monument","Travel 1000 blocks away from spawn","Discover all biomes nearby","Find a mushroom island","Explore a shipwreck","Climb the tallest mountain"],
+    "Resource Challenges": ["Mine your first diamond","Collect a stack of iron","Find emeralds","Mine ancient debris","Fill a chest with cobblestone","Gather 64 logs","Create a full diamond set","Enchant a tool","Make a beacon","Build an automatic farm"],
+    "Redstone & Logic": ["Make a piston door","Create a hidden base entrance","Build a simple trap","Make an automatic wheat farm","Create a redstone lamp system","Build a secret chest room","Make a TNT cannon","Build a mob grinder","Create a railway system","Make a redstone clock"],
+    "Fun & Weird": ["Build a zoo","Name all your animals","Ride a pig off a cliff","Make a chicken army","Build a giant statue of yourself","Create a roller coaster","Trap a villager","Build a maze","Make a snow golem army","Create a park"],
+    "Hardcore Challenges": ["Play without armor for 3 days","Survive only on fish","Live in the Nether for a week","No crafting for one day","Only use wooden tools","No sleeping challenge","Survive in a cave for 3 days","No eating challenge","One life survival","No mining challenge"],
+    "Goals & Achievements": ["Get full enchanted diamond armor","Complete all advancements","Build a mega base","Create a villager trading hall","Make a gold farm","Build an iron farm","Fully explore the End","Collect every mob head","Build a nether highway","Make a map wall"],
+    "Pro Level Missions": ["Defeat the Wither","Build a flying machine","Make a fully automatic sorting system","Build a city","Create a survival world museum","Build a hidden base no one can find","Make a working elevator","Build a giant pixel art","Survive 100 days","Create your own custom challenge"]
+};
+
+function selectCategory(category) {
+    selectedCategory = category;
+    document.getElementById('mission').innerText = "Selected: " + category;
+}
+
+function getMission() {
+    if (!selectedCategory) {
+        document.getElementById('mission').innerText = "Select a category first!";
+        return;
+    }
+    const list = missions[selectedCategory];
+    const random = list[Math.floor(Math.random() * list.length)];
+    document.getElementById('mission').innerText = random;
+}
+</script>
+
+</body>
+</html>
