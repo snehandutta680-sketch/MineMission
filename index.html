@@ -23,6 +23,31 @@ body {
     border: 6px solid #4CAF50; /* Green perimeter border */
     box-sizing: border-box;
 }
+ <a href="missions.html" class="mission-btn">⚠️ Enter the Mission Vault ⚠️</a>
+
+<style>
+.mission-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #00ff88;
+    background: #050805;
+    border: 2px solid #00ff88;
+    border-radius: 10px;
+    text-decoration: none;
+    text-shadow: 0 0 8px #00ff88;
+    transition: 0.2s;
+}
+
+.mission-btn:hover {
+    background: #00ff88;
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00ff88;
+}
+</style>
 
 h1 {
     color: #4CAF50;
@@ -161,7 +186,6 @@ function getMission() {
     document.getElementById('mission').innerText = random;
 }
 </script>
- <a href="missions.html">📜 View All Missions</a>
 
 </body>
 </html>
